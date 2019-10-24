@@ -621,6 +621,13 @@ waitpid(int pid, int *status, int options)
         release(&ptable.lock);
         return pid;
       }
+      
+      if (options == 1){
+		release(&ptable.lock);
+        return 0;
+	  }
+		
+      
     }
 
     // No point waiting if we don't have any children.
