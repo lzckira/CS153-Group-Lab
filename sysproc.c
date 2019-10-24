@@ -109,9 +109,10 @@ sys_waitpid(void)
   int pid;
   int *status;
   int options;
-  if(argint(0,&pid)<0 || argptr(1, (char**)& status, sizeof(status))<0 || argint(2,&options)<0)
+  if(argint(0,&pid)<0 || argptr(1, (char**)& status, sizeof(status))<0)
 		return -1;
-  
+  if(argint(2,&options)<0)
+		return -1;
   return waitpid(pid, status, options);
 	
 }
